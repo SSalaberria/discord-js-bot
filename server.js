@@ -1,21 +1,11 @@
+const http = require('http');
 const express = require('express');
-
-const server = express();
-
-server.all('/', (req, res) => {
-	res.setHeader('Content-Type', 'text/html');
-
-	res.write(
-		'<link href="https://fonts.googleapis.com/css?family=Roboto Condensed" rel="stylesheet"> <style> body {font-family: "Roboto Condensed";font-size: 22px;} <p>Hosting Active</p>',
-	);
-
-	res.end();
+const app = express();
+app.get('/', (request, response) => {
+	console.log(Date.now() + ' Ping Received');
+	response.sendStatus(200);
 });
-
-function keepAlive() {
-	server.listen(3000, () => {
-		console.log('Server is online!');
-	});
-}
-
-module.exports = keepAlive;
+app.listen(process.env.PORT);
+setInterval(() => {
+	http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
