@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
-const keepAlive = require('./server');
+// const keepAlive = require('./server');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -47,5 +47,5 @@ for (const file of eventFiles) {
 
 
 // Log in to Discord with your client's token
-keepAlive();
+// keepAlive();
 client.login(process.env.DISCORD_TOKEN);
